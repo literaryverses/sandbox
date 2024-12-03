@@ -222,5 +222,55 @@ class TestInvertedPyramid(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), "")
 
 
+class TestDiamond(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_diamond_positive(self, mock_stdout):
+        diamond(5)
+        expected_output = "    * \n   * * \n  * * * \n * * * * \n* * * * * \n * * * * \n  * * * \n   * * \n    * \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_diamond_zero(self, mock_stdout):
+        diamond(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_diamond_one(self, mock_stdout):
+        diamond(1)
+        expected_output = "* \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_diamond_negative(self, mock_stdout):
+        diamond(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+
+class TestHalfDiamond(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_half_diamond_positive(self, mock_stdout):
+        half_diamond(5)
+        expected_output = (
+            "* \n* * \n* * * \n* * * * \n* * * * * \n* * * * \n* * * \n* * \n* \n"
+        )
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_half_diamond_zero(self, mock_stdout):
+        half_diamond(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_half_diamond_one(self, mock_stdout):
+        half_diamond(1)
+        expected_output = "* \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_half_diamond_negative(self, mock_stdout):
+        half_diamond(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+
 if __name__ == "__main__":
     unittest.main()
