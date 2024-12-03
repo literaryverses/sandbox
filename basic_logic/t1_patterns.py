@@ -356,5 +356,35 @@ class RightTriangleBinary(unittest.TestCase):
         self.assertTrue(output_1 == output_2 == "")
 
 
+class TestNumberCrown(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_number_crown_positive(self, mock_stdout):
+        number_crown(5)
+        expected_output = (
+            "1               1\n"
+            "1 2           2 1\n"
+            "1 2 3       3 2 1\n"
+            "1 2 3 4   4 3 2 1\n"
+            "1 2 3 4 5 4 3 2 1\n"
+        )
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_number_crown_zero(self, mock_stdout):
+        number_crown(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_number_crown_one(self, mock_stdout):
+        number_crown(1)
+        expected_output = "1\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_number_crown_negative(self, mock_stdout):
+        number_crown(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+
 if __name__ == "__main__":
     unittest.main()
