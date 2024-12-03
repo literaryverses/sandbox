@@ -1,12 +1,7 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from l1_patterns import (
-    regular_block,
-    right_triangle,
-    right_triangle_count_2,
-    right_triangle_count_1,
-)
+from l1_patterns import *
 
 
 class TestRegularBlock(unittest.TestCase):
@@ -120,6 +115,14 @@ class TestRightTriangleIntegers(unittest.TestCase):
         output_2 = mock_stdout.getvalue()
 
         self.assertTrue(output_1 == output_2 == "")
+
+
+class TestRightTriangleIntegers(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_positive(self, mock_stdout):
+        right_triangle_integers(5)
+        expected_output = "1 \n2 2 \n3 3 3 \n4 4 4 4 \n5 5 5 5 5 \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
 
 
 if __name__ == "__main__":

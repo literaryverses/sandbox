@@ -92,7 +92,8 @@ def right_triangle_integers(n):
         4 4 4 4
         5 5 5 5 5
     """
-    pass
+    for n in range(1, n + 1):
+        print((f"{n} ") * n)
 
 
 def inverted_right_triangle(n):
