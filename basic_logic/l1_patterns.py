@@ -239,7 +239,7 @@ def diamond_filled(n):
         print(" " * (n - i) + "*" * (2 * i - 1))
 
 
-def right_triangle_binary(n):
+def right_triangle_binary_1(n):
     """
     Prints a right triangle pattern of binary numbers based on the input size.
 
@@ -254,7 +254,25 @@ def right_triangle_binary(n):
         0 1 0 1
         1 0 1 0 1
     """
-    pass
+    for i in range(1, n + 1):
+        if i % 2 == 0:
+            num = 0
+        else:
+            num = 1
+        for j in range(1, i + 1):
+            if j == i:
+                print(num)
+            else:
+                print(num, end=" ")
+            num = 1 - num
+
+
+def right_triangle_binary_2(n):
+    for i in range(1, n + 1):
+        row = []
+        for j in range(i):
+            row.append((j + i) % 2)
+        print(" ".join(map(str, row)))
 
 
 def number_crown(n):

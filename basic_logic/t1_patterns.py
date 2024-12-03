@@ -306,5 +306,55 @@ class TestHalfDiamond(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), "")
 
 
+class RightTriangleBinary(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_binary_positive(self, mock_stdout):
+        input_value = 5
+        right_triangle_binary_1(input_value)
+        output_1 = mock_stdout.getvalue()
+        mock_stdout.truncate(0)
+        mock_stdout.seek(0)
+        right_triangle_binary_2(input_value)
+        output_2 = mock_stdout.getvalue()
+        expected_output = "1\n0 1\n1 0 1\n0 1 0 1\n1 0 1 0 1\n"
+        self.assertEqual(output_1, output_2)
+        # self.assertTrue(output_1 == output_2 == expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_binary_zero(self, mock_stdout):
+        input_value = 0
+        right_triangle_binary_1(input_value)
+        output_1 = mock_stdout.getvalue()
+        mock_stdout.truncate(0)
+        mock_stdout.seek(0)
+        right_triangle_binary_2(input_value)
+        output_2 = mock_stdout.getvalue()
+        self.assertTrue(output_1 == output_2 == "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_binary_one(self, mock_stdout):
+        input_value = 1
+        right_triangle_binary_1(input_value)
+        output_1 = mock_stdout.getvalue()
+        mock_stdout.truncate(0)
+        mock_stdout.seek(0)
+        right_triangle_binary_2(input_value)
+        output_2 = mock_stdout.getvalue()
+        expected_output = "1\n"
+        self.assertEqual(output_1, output_2)
+        # self.assertTrue(output_1 == output_2 == expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_binary_negative(self, mock_stdout):
+        input_value = -5
+        right_triangle_binary_1(input_value)
+        output_1 = mock_stdout.getvalue()
+        mock_stdout.truncate(0)
+        mock_stdout.seek(0)
+        right_triangle_binary_2(input_value)
+        output_2 = mock_stdout.getvalue()
+        self.assertTrue(output_1 == output_2 == "")
+
+
 if __name__ == "__main__":
     unittest.main()
