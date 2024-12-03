@@ -20,14 +20,6 @@ def regular_block(n):
             print("* " * n)
 
 
-""" input=5, output=
-*
-* *
-* * *
-* * * *
-* * * * *"""
-
-
 def right_triangle(n):
     """
     Prints a right triangle pattern of asterisks based on the input size.
@@ -44,8 +36,8 @@ def right_triangle(n):
         * * * * *
     """
     if n > 0:
-        for i in range(1, n + 1):
-            print("* " * i)
+        for col in range(1, n + 1):
+            print("* " * col)
 
 
 def right_triangle_count_1(n):
@@ -73,8 +65,8 @@ def right_triangle_count_1(n):
 
 
 def right_triangle_count_2(n):
-    for row in range(1, n + 1):
-        print(" ".join(map(str, range(1, row + 1))))
+    for col in range(1, n + 1):
+        print(" ".join(map(str, range(1, col + 1))))
 
 
 def right_triangle_integers(n):
@@ -92,8 +84,8 @@ def right_triangle_integers(n):
         4 4 4 4
         5 5 5 5 5
     """
-    for n in range(1, n + 1):
-        print((f"{n} ") * n)
+    for count in range(1, n + 1):
+        print((f"{count} ") * count)
 
 
 def inverted_right_triangle(n):
@@ -111,8 +103,8 @@ def inverted_right_triangle(n):
         * *
         *
     """
-    for i in range(n, 0, -1):
-        print("* " * i)
+    for col in range(n, 0, -1):
+        print("* " * col)
 
 
 def inverted_right_triangle_count(n):
@@ -130,7 +122,8 @@ def inverted_right_triangle_count(n):
         1 2
         1
     """
-    pass
+    for col in range(n, 0, -1):
+        print(" ".join(map(str, range(1, col + 1))))
 
 
 def pyramid(n):
@@ -148,7 +141,8 @@ def pyramid(n):
          * * * *
         * * * * *
     """
-    pass
+    for row in range(1, n + 1):
+        print(" " * (n - row) + "* " * row)
 
 
 def inverted_pyramid(n):
@@ -166,7 +160,8 @@ def inverted_pyramid(n):
            * *
             *
     """
-    pass
+    for row in range(n, 0, -1):
+        print(" " * (n - row) + "* " * row)
 
 
 def diamond(n):

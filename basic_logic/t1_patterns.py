@@ -155,5 +155,72 @@ class TestInvertedRightTriangle(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
 
+class TestInvertedRightTriangleCount(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_right_triangle_count_positive(self, mock_stdout):
+        inverted_right_triangle_count(5)
+        expected_output = "1 2 3 4 5\n1 2 3 4\n1 2 3\n1 2\n1\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_right_triangle_count_zero(self, mock_stdout):
+        inverted_right_triangle_count(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_right_triangle_count_one(self, mock_stdout):
+        inverted_right_triangle_count(1)
+        expected_output = "1\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+
+class TestPyramid(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_positive(self, mock_stdout):
+        pyramid(5)
+        expected_output = "    * \n   * * \n  * * * \n * * * * \n* * * * * \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_zero(self, mock_stdout):
+        pyramid(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_one(self, mock_stdout):
+        pyramid(1)
+        expected_output = "* \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_negative(self, mock_stdout):
+        pyramid(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+
+class TestInvertedPyramid(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_pyramid_positive(self, mock_stdout):
+        inverted_pyramid(5)
+        expected_output = "* * * * * \n * * * * \n  * * * \n   * * \n    * \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_pyramid_zero(self, mock_stdout):
+        inverted_pyramid(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_pyramid_one(self, mock_stdout):
+        inverted_pyramid(1)
+        expected_output = "* \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_pyramid_negative(self, mock_stdout):
+        inverted_pyramid(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+
 if __name__ == "__main__":
     unittest.main()
