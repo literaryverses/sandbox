@@ -124,6 +124,36 @@ class TestRightTriangleIntegers(unittest.TestCase):
         expected_output = "1 \n2 2 \n3 3 3 \n4 4 4 4 \n5 5 5 5 5 \n"
         self.assertEqual(mock_stdout.getvalue(), expected_output)
 
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_zero(self, mock_stdout):
+        right_triangle_integers(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_one(self, mock_stdout):
+        right_triangle_integers(1)
+        expected_output = "1 \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+
+class TestInvertedRightTriangle(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_right_triangle_positive(self, mock_stdout):
+        inverted_right_triangle(5)
+        expected_output = "* * * * * \n* * * * \n* * * \n* * \n* \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_right_triangle_zero(self, mock_stdout):
+        inverted_right_triangle(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_inverted_right_triangle_one(self, mock_stdout):
+        inverted_right_triangle(1)
+        expected_output = "* \n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
 
 if __name__ == "__main__":
     unittest.main()

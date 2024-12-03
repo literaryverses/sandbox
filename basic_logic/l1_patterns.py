@@ -111,7 +111,8 @@ def inverted_right_triangle(n):
         * *
         *
     """
-    pass
+    for i in range(n, 0, -1):
+        print("* " * i)
 
 
 def inverted_right_triangle_count(n):
