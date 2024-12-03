@@ -4,8 +4,8 @@ from unittest.mock import patch
 from l1_patterns import (
     regular_block,
     right_triangle,
-    right_triangle_integers_2,
-    right_triangle_integers_1,
+    right_triangle_count_2,
+    right_triangle_count_1,
 )
 
 
@@ -62,13 +62,13 @@ class TestRightTriangleIntegers(unittest.TestCase):
     def test_right_triangle_positive(self, mock_stdout):
         input_value = 5
 
-        right_triangle_integers_1(input_value)
+        right_triangle_count_1(input_value)
         output_1 = mock_stdout.getvalue()
 
         mock_stdout.truncate(0)
         mock_stdout.seek(0)
 
-        right_triangle_integers_2(input_value)
+        right_triangle_count_2(input_value)
         output_2 = mock_stdout.getvalue()
 
         expected_output = "1\n1 2\n1 2 3\n1 2 3 4\n1 2 3 4 5\n"
@@ -78,13 +78,13 @@ class TestRightTriangleIntegers(unittest.TestCase):
     def test_right_triangle_zero(self, mock_stdout):
         input_value = 0
 
-        right_triangle_integers_1(input_value)
+        right_triangle_count_1(input_value)
         output_1 = mock_stdout.getvalue()
 
         mock_stdout.truncate(0)
         mock_stdout.seek(0)
 
-        right_triangle_integers_2(input_value)
+        right_triangle_count_2(input_value)
         output_2 = mock_stdout.getvalue()
 
         self.assertTrue(output_1 == output_2 == "")
@@ -93,13 +93,13 @@ class TestRightTriangleIntegers(unittest.TestCase):
     def test_right_triangle_one(self, mock_stdout):
         input_value = 1
 
-        right_triangle_integers_1(input_value)
+        right_triangle_count_1(input_value)
         output_1 = mock_stdout.getvalue()
 
         mock_stdout.truncate(0)
         mock_stdout.seek(0)
 
-        right_triangle_integers_2(input_value)
+        right_triangle_count_2(input_value)
         output_2 = mock_stdout.getvalue()
 
         expected_output = "1\n"
@@ -110,13 +110,13 @@ class TestRightTriangleIntegers(unittest.TestCase):
     def test_right_triangle_negative(self, mock_stdout):
         input_value = -5
 
-        right_triangle_integers_1(input_value)
+        right_triangle_count_1(input_value)
         output_1 = mock_stdout.getvalue()
 
         mock_stdout.truncate(0)
         mock_stdout.seek(0)
 
-        right_triangle_integers_2(input_value)
+        right_triangle_count_2(input_value)
         output_2 = mock_stdout.getvalue()
 
         self.assertTrue(output_1 == output_2 == "")
