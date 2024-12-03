@@ -385,6 +385,14 @@ class TestNumberCrown(unittest.TestCase):
         number_crown(-5)
         self.assertEqual(mock_stdout.getvalue(), "")
 
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_number_crown_symmetry(self, mock_stdout):
+        number_crown(11)
+        output = mock_stdout.getvalue()
+        for line in output:
+            for char in range(len(line)):
+                self.assertEqual(line[char], line[-char - 1])
+
 
 if __name__ == "__main__":
     unittest.main()

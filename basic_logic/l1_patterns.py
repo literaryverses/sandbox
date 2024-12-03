@@ -1,4 +1,5 @@
 # 1 learn important patterns
+from copy import copy
 
 
 def regular_block(n):
@@ -290,4 +291,29 @@ def number_crown(n):
         1 2 3 4   4 3 2 1
         1 2 3 4 5 4 3 2 1
     """
-    pass
+    max_digit = len(str(n))
+
+    # determine spacing for each row
+    row = [[]] * (max_digit * 2 - 1)
+    center = n
+    for i in range(max_digit):
+        if i == max_digit - 1:
+            amount = center
+            row[(len(row) - 1) // 2] = [" " * (i + 1)] * (2 * amount - 1)
+        else:
+            amount = 9 * 10**i
+            row[i] = [" " * (i + 1)] * amount
+            row[i - 1] = [" " * (i + 1)] * amount
+        center -= 9 * 10**i
+    row_template = [item for sublist in row for item in sublist]
+
+    # determine numbers for each row
+    for i in range(1, n + 1):
+        row = copy(row_template)
+        for j in range(1, i + 1):
+            row[j - 1] = str(j)
+            row[-j] = str(j)
+        print(" ".join(row))
+
+
+number_crown(11)
