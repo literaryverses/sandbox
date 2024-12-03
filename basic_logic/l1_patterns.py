@@ -397,18 +397,21 @@ def symmetric_void(n):
 
     Example:
         input=5, output=
-        * * * * * * * * *
-        * * * *   * * * *
-        * * *       * * *
-        * *           * *
-        *               *
-        *               *
-        * *           * *
-        * * *       * * *
-        * * * *   * * * *
-        * * * * * * * * *
+        **********
+        ****  ****
+        ***    ***
+        **      **
+        *        *
+        *        *
+        **      **
+        ***    ***
+        ****  ****
+        **********
     """
-    pass
+    for i in range(n, 0, -1):
+        print("*" * i + " " * (n - i) * 2 + "*" * i)
+    for i in range(1, n + 1):
+        print("*" * i + " " * (n - i) * 2 + "*" * i)
 
 
 def symmetric_butterfly(n):
@@ -420,17 +423,21 @@ def symmetric_butterfly(n):
 
     Example:
         input=5, output=
-        *               *
-        * *           * *
-        * * *       * * *
-        * * * *   * * * *
-        * * * * * * * * *
-        * * * *   * * * *
-        * * *       * * *
-        * *           * *
-        *               *
+        *        *
+        **      **
+        ***    ***
+        ****  ****
+        **********
+        **********
+        ****  ****
+        ***    ***
+        **      **
+        *        *
     """
-    pass
+    for i in range(1, n + 1):
+        print("*" * i + " " * (n - i) * 2 + "*" * i)
+    for i in range(n, 0, -1):
+        print("*" * i + " " * (n - i) * 2 + "*" * i)
 
 
 def hollow(n):
@@ -442,13 +449,17 @@ def hollow(n):
 
     Example:
         input=5, output=
-        * * * * *
-        *       *
-        *       *
-        *       *
-        * * * * *
+        *****
+        *   *
+        *   *
+        *   *
+        *****
     """
-    pass
+    for i in range(0, n):
+        if i == 0 or i == (n - 1):
+            print("*" * n)
+        else:
+            print("*" + " " * (n - 2) + "*")
 
 
 def count_source(n):
@@ -468,4 +479,11 @@ def count_source(n):
         4 3 3 3 3 3 4
         4 4 4 4 4 4 4
     """
-    pass
+    size = 2 * n - 1
+    for row in range(size):
+        for col in range(size):
+            value = n - min(row, col, size - 1 - row, size - 1 - col)
+            if col == size - 1:
+                print(value)
+            else:
+                print(value, end=" ")

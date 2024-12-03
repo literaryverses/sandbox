@@ -458,7 +458,168 @@ class TestPyramidNumber(unittest.TestCase):
         self.assertEqual(last_line[input_number - 1], "2")
 
 
-# TODO: tests for right_triangle_count_source, symmetric-void pattern, symmetry-butterfly, hollow, count_source
+class TestRightTriangleCountSource(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_count_source_positive(self, mock_stdout):
+        right_triangle_count_source(5)
+        expected_output = "5\n4 5\n3 4 5\n2 3 4 5\n1 2 3 4 5\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_count_source_zero(self, mock_stdout):
+        right_triangle_count_source(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_count_source_one(self, mock_stdout):
+        right_triangle_count_source(1)
+        expected_output = "1\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_right_triangle_count_source_negative(self, mock_stdout):
+        right_triangle_count_source(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+
+class TestSymmetricVoid(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_void_positive(self, mock_stdout):
+        symmetric_void(5)
+        expected_output = (
+            "**********\n"
+            "****  ****\n"
+            "***    ***\n"
+            "**      **\n"
+            "*        *\n"
+            "*        *\n"
+            "**      **\n"
+            "***    ***\n"
+            "****  ****\n"
+            "**********\n"
+        )
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_void_zero(self, mock_stdout):
+        symmetric_void(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_void_one(self, mock_stdout):
+        symmetric_void(1)
+        expected_output = "**\n**\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_void_negative(self, mock_stdout):
+        symmetric_void(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_void_symmetry(self, mock_stdout):
+        symmetric_void(11)
+        output = mock_stdout.getvalue()
+        for line in output:
+            for char in range(len(line)):
+                self.assertEqual(line[char], line[-char - 1])
+
+
+class TestSymmetricButterfly(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_butterfly_positive(self, mock_stdout):
+        symmetric_butterfly(3)
+        expected_output = "*    *\n**  **\n******\n******\n**  **\n*    *\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_butterfly_zero(self, mock_stdout):
+        symmetric_butterfly(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_butterfly_one(self, mock_stdout):
+        symmetric_butterfly(1)
+        expected_output = "**\n**\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_butterfly_negative(self, mock_stdout):
+        symmetric_butterfly(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_symmetric_butterfly_symmetry(self, mock_stdout):
+        symmetric_butterfly(11)
+        output = mock_stdout.getvalue()
+        for line in output:
+            for char in range(len(line)):
+                self.assertEqual(line[char], line[-char - 1])
+
+
+class TestHollow(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_hollow_positive(self, mock_stdout):
+        hollow(5)
+        expected_output = "*****\n" "*   *\n" "*   *\n" "*   *\n" "*****\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_hollow_zero(self, mock_stdout):
+        hollow(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_hollow_one(self, mock_stdout):
+        hollow(1)
+        expected_output = "*\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_hollow_negative(self, mock_stdout):
+        hollow(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_hollow_symmetry(self, mock_stdout):
+        hollow(11)
+        output = mock_stdout.getvalue()
+        for line in output:
+            for char in range(len(line)):
+                self.assertEqual(line[char], line[-char - 1])
+
+
+class TestCountSource(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_count_source_positive(self, mock_stdout):
+        count_source(4)
+        expected_output = "4 4 4 4 4 4 4\n4 3 3 3 3 3 4\n4 3 2 2 2 3 4\n4 3 2 1 2 3 4\n4 3 2 2 2 3 4\n4 3 3 3 3 3 4\n4 4 4 4 4 4 4\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_count_source_zero(self, mock_stdout):
+        count_source(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_count_source_one(self, mock_stdout):
+        count_source(1)
+        expected_output = "1\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_count_source_negative(self, mock_stdout):
+        count_source(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_count_source_symmetry(self, mock_stdout):
+        count_source(11)
+        output = mock_stdout.getvalue()
+        for line in output:
+            for char in range(len(line)):
+                self.assertEqual(line[char], line[-char - 1])
+
 
 if __name__ == "__main__":
     unittest.main()
