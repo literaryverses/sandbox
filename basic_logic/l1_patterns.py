@@ -255,13 +255,13 @@ def right_triangle_binary_1(n):
         0 1 0 1
         1 0 1 0 1
     """
-    for i in range(1, n + 1):
-        if i % 2 == 0:
+    for row in range(1, n + 1):
+        if row % 2 == 0:
             num = 0
         else:
             num = 1
-        for j in range(1, i + 1):
-            if j == i:
+        for col in range(1, row + 1):
+            if col == row:
                 print(num)
             else:
                 print(num, end=" ")
@@ -269,11 +269,11 @@ def right_triangle_binary_1(n):
 
 
 def right_triangle_binary_2(n):
-    for i in range(1, n + 1):
-        row = []
-        for j in range(i):
-            row.append((j + i) % 2)
-        print(" ".join(map(str, row)))
+    for row in range(1, n + 1):
+        rows = []
+        for col in range(row):
+            rows.append((col + row) % 2)
+        print(" ".join(map(str, rows)))
 
 
 def number_crown(n):
@@ -294,26 +294,48 @@ def number_crown(n):
     max_digit = len(str(n))
 
     # determine spacing for each row
-    row = [[]] * (max_digit * 2 - 1)
+    rows = [[]] * (max_digit * 2 - 1)
     center = n
-    for i in range(max_digit):
-        if i == max_digit - 1:
+    for row in range(max_digit):
+        if row == max_digit - 1:
             amount = center
-            row[(len(row) - 1) // 2] = [" " * (i + 1)] * (2 * amount - 1)
+            rows[(len(rows) - 1) // 2] = [" " * (row + 1)] * (2 * amount - 1)
         else:
-            amount = 9 * 10**i
-            row[i] = [" " * (i + 1)] * amount
-            row[i - 1] = [" " * (i + 1)] * amount
-        center -= 9 * 10**i
-    row_template = [item for sublist in row for item in sublist]
+            amount = 9 * 10**row
+            rows[row] = [" " * (row + 1)] * amount
+            rows[row - 1] = [" " * (row + 1)] * amount
+        center -= 9 * 10**row
+    row_template = [item for sublist in rows for item in sublist]
 
     # determine numbers for each row
-    for i in range(1, n + 1):
-        row = copy(row_template)
-        for j in range(1, i + 1):
-            row[j - 1] = str(j)
-            row[-j] = str(j)
-        print(" ".join(row))
+    for row in range(1, n + 1):
+        row_final = copy(row_template)
+        for col in range(1, row + 1):
+            row_final[col - 1] = str(col)
+            row_final[-col] = str(col)
+        print(" ".join(row_final))
 
 
-number_crown(11)
+def increasing_triangle(n):
+    """
+    Prints a triangle pattern of increasing numbers based on the input size.
+
+    Args:
+        n (int): The size of the triangle.
+
+    Example:
+        input=5, output=
+        1
+        2 3
+        4 5 6
+        7 8 9 10
+        11 12 13 14 15
+    """
+    count = 1
+    for row in range(1, n + 1):
+        for col in range(1, row + 1):
+            if col == row:
+                print(count)
+            else:
+                print(count, end=" ")
+            count += 1

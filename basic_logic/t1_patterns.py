@@ -394,5 +394,29 @@ class TestNumberCrown(unittest.TestCase):
                 self.assertEqual(line[char], line[-char - 1])
 
 
+class TestIncreasingTriangle(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_increasing_triangle_positive(self, mock_stdout):
+        increasing_triangle(4)
+        expected_output = "1\n" "2 3\n" "4 5 6\n" "7 8 9 10\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_increasing_triangle_zero(self, mock_stdout):
+        increasing_triangle(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_increasing_triangle_one(self, mock_stdout):
+        increasing_triangle(1)
+        expected_output = "1\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_increasing_triangle_negative(self, mock_stdout):
+        increasing_triangle(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+
 if __name__ == "__main__":
     unittest.main()
