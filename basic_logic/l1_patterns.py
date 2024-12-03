@@ -214,6 +214,31 @@ def half_diamond(n):
         print("* " * i)
 
 
+def diamond_filled(n):
+    """
+    Prints a complete diamond pattern of asterisks based on the input size.
+
+    Args:
+        n (int): The size of the complete diamond.
+
+    Example:
+        input=5, output=
+            *
+           ***
+          *****
+         *******
+        *********
+         *******
+          *****
+           ***
+            *
+    """
+    for i in range(1, n + 1):
+        print(" " * (n - i) + "*" * (2 * i - 1))
+    for i in range(n - 1, 0, -1):
+        print(" " * (n - i) + "*" * (2 * i - 1))
+
+
 def right_triangle_binary(n):
     """
     Prints a right triangle pattern of binary numbers based on the input size.
@@ -228,5 +253,23 @@ def right_triangle_binary(n):
         1 0 1
         0 1 0 1
         1 0 1 0 1
+    """
+    pass
+
+
+def number_crown(n):
+    """
+    Prints a crown pattern of numbers based on the input size.
+
+    Args:
+        n (int): The size of the crown.
+
+    Example:
+        input=5, output=
+        1               1
+        1 2           2 1
+        1 2 3       3 2 1
+        1 2 3 4   4 3 2 1
+        1 2 3 4 5 4 3 2 1
     """
     pass

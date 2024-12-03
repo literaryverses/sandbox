@@ -246,6 +246,40 @@ class TestDiamond(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), "")
 
 
+class TestDiamondFilled(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_diamond_filled_positive(self, mock_stdout):
+        diamond_filled(5)
+        expected_output = (
+            "    *\n"
+            "   ***\n"
+            "  *****\n"
+            " *******\n"
+            "*********\n"
+            " *******\n"
+            "  *****\n"
+            "   ***\n"
+            "    *\n"
+        )
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_diamond_filled_zero(self, mock_stdout):
+        diamond_filled(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_diamond_filled_one(self, mock_stdout):
+        diamond_filled(1)
+        expected_output = "*\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_diamond_filled_negative(self, mock_stdout):
+        diamond_filled(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+
 class TestHalfDiamond(unittest.TestCase):
     @patch("sys.stdout", new_callable=StringIO)
     def test_half_diamond_positive(self, mock_stdout):
