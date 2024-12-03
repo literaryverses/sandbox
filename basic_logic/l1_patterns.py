@@ -388,4 +388,84 @@ def right_triangle_count_source(n):
                 print(col)
 
 
-right_triangle_count_source(5)
+def symmetric_void(n):
+    """
+    Prints a symmetric void pattern of asterisks based on the input size.
+
+    Args:
+        n (int): The size of the symmetric void.
+
+    Example:
+        input=5, output=
+        * * * * * * * * *
+        * * * *   * * * *
+        * * *       * * *
+        * *           * *
+        *               *
+        *               *
+        * *           * *
+        * * *       * * *
+        * * * *   * * * *
+        * * * * * * * * *
+    """
+    pass
+
+
+def symmetric_butterfly(n):
+    """
+    Prints a symmetric butterfly pattern of asterisks based on the input size.
+
+    Args:
+        n (int): The size of the symmetric butterfly.
+
+    Example:
+        input=5, output=
+        *               *
+        * *           * *
+        * * *       * * *
+        * * * *   * * * *
+        * * * * * * * * *
+        * * * *   * * * *
+        * * *       * * *
+        * *           * *
+        *               *
+    """
+    pass
+
+
+def hollow(n):
+    """
+    Prints a hollow pattern of asterisks based on the input size.
+
+    Args:
+        n (int): The size of the hollow pattern.
+
+    Example:
+        input=5, output=
+        * * * * *
+        *       *
+        *       *
+        *       *
+        * * * * *
+    """
+    pass
+
+
+def count_source(n):
+    """
+    Prints a pattern of incrementing numbers from one source based on the input size.
+
+    Args:
+        n (int): The size of the pattern.
+
+    Example:
+        input=4, output=
+        4 4 4 4 4 4 4
+        4 3 3 3 3 3 4
+        4 3 2 2 2 3 4
+        4 3 2 1 2 3 4
+        4 3 2 2 2 3 4
+        4 3 3 3 3 3 4
+        4 4 4 4 4 4 4
+    """
+    pass
