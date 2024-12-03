@@ -458,5 +458,7 @@ class TestPyramidNumber(unittest.TestCase):
         self.assertEqual(last_line[input_number - 1], "2")
 
 
+# TODO: tests for right_triangle_count_source, symmetric-void pattern, symmetry-butterfly, hollow, count_source
+
 if __name__ == "__main__":
     unittest.main()

@@ -362,3 +362,30 @@ def pyramid_number(n):
         right_side = "".join(str(col % 10) for col in range(row - 1, 0, -1))
 
         print(" " * (n - row) + left_side + right_side)
+
+
+def right_triangle_count_source(n):
+    """
+    Prints a right triangle pattern of incrementing numbers from one source
+    based on the input size.
+
+    Args:
+        n (int): The size of the right triangle.
+
+    Example:
+        input=5, output=
+        5
+        4 5
+        3 4 5
+        2 3 4 5
+        1 2 3 4 5
+    """
+    for row in range(n):
+        for col in range(n - row, n + 1):
+            if col != n:
+                print(col, end=" ")
+            else:
+                print(col)
+
+
+right_triangle_count_source(5)
