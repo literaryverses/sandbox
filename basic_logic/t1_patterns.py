@@ -418,5 +418,45 @@ class TestIncreasingTriangle(unittest.TestCase):
         self.assertEqual(mock_stdout.getvalue(), "")
 
 
+class TestPyramidNumber(unittest.TestCase):
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_number_positive(self, mock_stdout):
+        pyramid_number(5)
+        expected_output = "    1\n" "   121\n" "  12321\n" " 1234321\n" "123454321\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_number_zero(self, mock_stdout):
+        pyramid_number(0)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_number_one(self, mock_stdout):
+        pyramid_number(1)
+        expected_output = "1\n"
+        self.assertEqual(mock_stdout.getvalue(), expected_output)
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_number_negative(self, mock_stdout):
+        pyramid_number(-5)
+        self.assertEqual(mock_stdout.getvalue(), "")
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_number_symmetry(self, mock_stdout):
+        pyramid_number(11)
+        output = mock_stdout.getvalue()
+        for line in output:
+            for char in range(len(line)):
+                self.assertEqual(line[char], line[-char - 1])
+
+    @patch("sys.stdout", new_callable=StringIO)
+    def test_pyramid_number_center(self, mock_stdout):
+        input_number = 12
+        pyramid_number(input_number)
+        output = mock_stdout.getvalue()
+        last_line = output.split("\n")[-2]
+        self.assertEqual(last_line[input_number - 1], "2")
+
+
 if __name__ == "__main__":
     unittest.main()

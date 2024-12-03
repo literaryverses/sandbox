@@ -339,3 +339,26 @@ def increasing_triangle(n):
             else:
                 print(count, end=" ")
             count += 1
+
+
+def pyramid_number(n):
+    """
+    Prints a pyramid pattern of numbers based on the input size.
+
+    Args:
+        n (int): The size of the pyramid.
+
+    Example:
+        input=5, output=
+            1
+           121
+          12321
+         1234321
+        123454321
+    """
+    for row in range(1, n + 1):
+        left_side = "".join(str(col % 10) for col in range(1, row + 1))
+
+        right_side = "".join(str(col % 10) for col in range(row - 1, 0, -1))
+
+        print(" " * (n - row) + left_side + right_side)
