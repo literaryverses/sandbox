@@ -44,7 +44,21 @@ class Reverse_number:
 
 
 class Check_palindrome:
-    pass
+    """
+    Check if a given number is a palindrome.
+    """
+
+    def optimal_solution(self, n):
+        reversed_number = Reverse_number().optimal_solution(n)
+        if n == reversed_number:
+            return True
+        else:
+            return False
+
+
+print(Check_palindrome().optimal_solution(12321))
+
+# print(Check_palindrome().optimal_solution(12321))
 
 
 class GCD_or_HCF:

@@ -35,7 +35,7 @@ class TestCountDigits(unittest.TestCase):
         self.assertEqual(self.counter.brute_force(-12345), 5)
 
 
-class TestOptimalSolution(unittest.TestCase):
+class TestReverseNumber(unittest.TestCase):
     def setUp(self):
         self.reverser = Reverse_number()
 
@@ -59,6 +59,37 @@ class TestOptimalSolution(unittest.TestCase):
     def test_large_numbers(self):
         self.assertEqual(self.reverser.optimal_solution(987654321), 123456789)
         self.assertEqual(self.reverser.optimal_solution(-987654321), -123456789)
+
+
+class TestCheckPalindrome:
+    def setUp(self):
+        self.palindrome_checker = Check_palindrome()
+
+    def test_single_digit(self):
+        self.assertTrue(self.palindrome_checker.optimal_solution(5))
+        self.assertTrue(self.palindrome_checker.optimal_solution(9))
+
+    def test_palindromes(self):
+        self.assertTrue(self.palindrome_checker.optimal_solution(121))
+        self.assertTrue(self.palindrome_checker.optimal_solution(12321))
+        self.assertTrue(self.palindrome_checker.optimal_solution(1234321))
+        self.assertTrue(self.palindrome_checker.optimal_solution(123454321))
+
+    def test_non_palindromes(self):
+        self.assertFalse(self.palindrome_checker.optimal_solution(123))
+        self.assertFalse(self.palindrome_checker.optimal_solution(1234))
+        self.assertFalse(self.palindrome_checker.optimal_solution(12345))
+        self.assertFalse(self.palindrome_checker.optimal_solution(123456))
+
+    def test_negative_numbers(self):
+        self.assertTrue(self.palindrome_checker.optimal_solution(-121))
+        self.assertTrue(self.palindrome_checker.optimal_solution(-12321))
+        self.assertTrue(self.palindrome_checker.optimal_solution(-1234321))
+        self.assertTrue(self.palindrome_checker.optimal_solution(-123454321))
+        self.assertFalse(self.palindrome_checker.optimal_solution(-123))
+        self.assertFalse(self.palindrome_checker.optimal_solution(-1234))
+        self.assertFalse(self.palindrome_checker.optimal_solution(-12345))
+        self.assertFalse(self.palindrome_checker.optimal_solution(-123456))
 
 
 if __name__ == "__main__":
