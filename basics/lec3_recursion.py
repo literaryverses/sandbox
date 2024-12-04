@@ -35,7 +35,19 @@ class Counter:
 class CounterBackwards:
     """Print n to 1"""
 
-    pass
+    @staticmethod
+    def solution(n):
+        if n == 0:
+            return
+        print(n)
+        return CounterBackwards.solution(n - 1)
+
+    @staticmethod
+    def backtracking(n):
+        if n == 0:
+            return
+        CounterBackwards.backtracking(n - 1)
+        print(n)
 
 
 class Sums:
