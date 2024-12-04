@@ -116,5 +116,37 @@ class TestArmstrongNumbers:
         self.assertFalse(self.armstrong.optimal_solution(93085))
 
 
+class TestGCDOrHCF:
+    def setUp(self):
+        self.gcd = GCD_or_HCF()
+
+    def test_gcd(self):
+        self.assertEqual(self.gcd.brute_force(10, 5), 5)
+        self.assertEqual(self.gcd.optimal_solution(10, 5), 5)
+        self.assertEqual(self.gcd.brute_force(14, 28), 14)
+        self.assertEqual(self.gcd.optimal_solution(14, 28), 14)
+        self.assertEqual(self.gcd.brute_force(15, 25), 5)
+        self.assertEqual(self.gcd.optimal_solution(15, 25), 5)
+        self.assertEqual(self.gcd.brute_force(100, 200), 100)
+        self.assertEqual(self.gcd.optimal_solution(100, 200), 100)
+        self.assertEqual(self.gcd.brute_force(1000, 2000), 1000)
+        self.assertEqual(self.gcd.optimal_solution(1000, 2000), 1000)
+        self.assertEqual(self.gcd.brute_force(10000, 20000), 10000)
+        self.assertEqual(self.gcd.optimal_solution(10000, 20000), 10000)
+        self.assertEqual(self.gcd.brute_force(15, 27), 3)
+
+    def test_one_gcd(self):
+        self.assertEqual(self.gcd.brute_force(10, 3), 1)
+        self.assertEqual(self.gcd.optimal_solution(10, 3), 1)
+        self.assertEqual(self.gcd.brute_force(14, 15), 1)
+        self.assertEqual(self.gcd.optimal_solution(14, 15), 1)
+        self.assertEqual(self.gcd.brute_force(100, 201), 1)
+        self.assertEqual(self.gcd.optimal_solution(100, 201), 1)
+        self.assertEqual(self.gcd.brute_force(1000, 2001), 1)
+        self.assertEqual(self.gcd.optimal_solution(1000, 2001), 1)
+        self.assertEqual(self.gcd.brute_force(10000, 20001), 1)
+        self.assertEqual(self.gcd.optimal_solution(10000, 20001), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -10,7 +10,8 @@ class Count_digits:
 
     # O(log n) time complexity
     # O(1) space complexity
-    def brute_force(self, n):
+    @staticmethod
+    def brute_force(n):
         if n == 0:
             return 1
         count = 0
@@ -22,7 +23,8 @@ class Count_digits:
 
     # O(1) time complexity
     # O(1) space complexity
-    def optimal_solution(self, n):
+    @staticmethod
+    def optimal_solution(n):
         if n == 0:
             return 1
         return int(math.log10(abs(n)) + 1)
@@ -35,7 +37,8 @@ class Reverse_number:
 
     # O(log n) time complexity
     # O(1) space complexity
-    def optimal_solution(self, n):
+    @staticmethod
+    def optimal_solution(n):
         num = abs(n)
         reversed_number = 0
         while num != 0:
@@ -50,8 +53,9 @@ class Check_palindrome:
     Check if a given number is a palindrome.
     """
 
-    def optimal_solution(self, n):
-        reversed_number = Reverse_number().optimal_solution(n)
+    @staticmethod
+    def optimal_solution(n):
+        reversed_number = Reverse_number.optimal_solution(n)
         if n == reversed_number:
             return True
         else:
@@ -63,7 +67,25 @@ class GCD_or_HCF:
     Find the Greatest Common Divisor (GCD) or Highest Common Factor (HCF) of two numbers.
     """
 
-    pass
+    # O(n) time complexity
+    # O(1) space complexity
+    @staticmethod
+    def brute_force(num1, num2):
+        min = min(num1, num2)
+        for i in range(min, 0, -1):
+            if num1 % i == 0 and num2 % i == 0:
+                return i
+        return "No GCD/HCF found"
+
+    # O(log n) time complexity
+    # O(1) space complexity
+    @staticmethod
+    def optimal_solution(num1, num2):
+        """Uses Euclid's algorithim"""
+        while num1 != 0 and num2 != 0:
+            num1, num2 = min(num1, num2), max(num1, num2)
+            num2 -= num1
+        return max(num1, num2)
 
 
 class Armstrong_numbers:
@@ -73,11 +95,12 @@ class Armstrong_numbers:
     to the power of the number of digits.
     """
 
-    def optimal_solution(self, n):
+    @staticmethod
+    def optimal_solution(n):
         if n < 0:
             return False
 
-        num_of_digits = Count_digits().optimal_solution(n)
+        num_of_digits = Count_digits.optimal_solution(n)
         sum_of_digits = 0
         temp = n
         while temp != 0:
