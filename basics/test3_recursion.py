@@ -45,13 +45,13 @@ class TestCounter(unittest.TestCase):
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, ["1", "2", "3", "4", "5"])
 
-    def test_solution_n_zero(self):
+    def test_solution_zero(self):
         Counter.solution(0)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
-    def test_solution_negative_n(self):
+    def test_solution_negative(self):
         Counter.solution(-5)
         self.held_output.seek(0)
         output = self.held_output.read()
@@ -70,13 +70,13 @@ class TestCounter(unittest.TestCase):
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, ["1", "2", "3", "4", "5"])
 
-    def test_backtracking_n_zero(self):
+    def test_backtracking_zero(self):
         Counter.backtracking(0)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
-    def test_backtracking_negative_n(self):
+    def test_backtracking_negative(self):
         Counter.backtracking(-5)
         self.held_output.seek(0)
         output = self.held_output.read()
@@ -135,37 +135,118 @@ class TestCounterBackwards(unittest.TestCase):
         output = self.held_output.read()
         self.assertEqual(output, "")
 
-    # def test_backtracking_negative(self):
-    #     CounterBackwards.backtracking(-5)
-    #     self.held_output.seek(0)
-    #     output = self.held_output.read()
-    #     self.assertEqual(output, "")
+    def test_backtracking_negative(self):
+        CounterBackwards.backtracking(-5)
+        self.held_output.seek(0)
+        output = self.held_output.read()
+        self.assertEqual(output, "")
 
-    # def test_backtracking_large(self):
-    #     n = 100
-    #     CounterBackwards.backtracking(n)
-    #     self.held_output.seek(0)
-    #     output = self.held_output.read().strip().split("\n")
-    #     self.assertEqual(output, [str(i) for i in range(n, 0, -1)])
+    def test_backtracking_large(self):
+        n = 100
+        CounterBackwards.backtracking(n)
+        self.held_output.seek(0)
+        output = self.held_output.read().strip().split("\n")
+        self.assertEqual(output, [str(i) for i in range(n, 0, -1)])
 
 
-class TestSums:
+class TestSums(unittest.TestCase):
+    def test_loop_basic(self):
+        self.assertEqual(Sums.iterative(5), 15)
+        self.assertEqual(Sums.iterative(10), 55)
+
+    def test_loop_zero(self):
+        self.assertEqual(Sums.iterative(0), 0)
+
+    def test_loop_negative(self):
+        self.assertEqual(Sums.iterative(-5), 0)
+
+    def test_formula_basic(self):
+        self.assertEqual(Sums.formula(5), 15)
+        self.assertEqual(Sums.formula(10), 55)
+
+    def test_formula_zero(self):
+        self.assertEqual(Sums.formula(0), 0)
+
+    def test_formula_negative(self):
+        self.assertEqual(Sums.formula(-5), 0)
+
+    def test_recursive_parameterized_basic(self):
+        self.assertEqual(Sums.recursive_parameterized(5), 15)
+        self.assertEqual(Sums.recursive_parameterized(10), 55)
+
+    def test_recursive_parameterized_zero(self):
+        self.assertEqual(Sums.recursive_parameterized(0), 0)
+
+    def test_recursive_parameterized_negative(self):
+        self.assertEqual(Sums.recursive_parameterized(-5), 0)
+
+    def test_recursive_functional_basic(self):
+        self.assertEqual(Sums.recursive_functional(5), 15)
+        self.assertEqual(Sums.recursive_functional(10), 55)
+
+    def test_recursive_functional_zero(self):
+        self.assertEqual(Sums.recursive_functional(0), 0)
+
+    def test_recursive_functional_negative(self):
+        self.assertEqual(Sums.recursive_functional(-5), 0)
+
+    def test_large_n(self):
+        n = 100
+        expected = n * (n + 1) // 2
+        self.assertEqual(Sums.iterative(n), expected)
+        self.assertEqual(Sums.formula(n), expected)
+        self.assertEqual(Sums.recursive_parameterized(n), expected)
+        self.assertEqual(Sums.recursive_functional(n), expected)
+
+
+class TestFactorials(unittest.TestCase):
+    def test_iterative_basic(self):
+        self.assertEqual(Factorials.iterative(5), 120)
+        self.assertEqual(Factorials.iterative(10), 3628800)
+
+    def test_iterative_one(self):
+        self.assertEqual(Factorials.iterative(1), 1)
+
+    def test_iterative_zero(self):
+        self.assertEqual(Factorials.iterative(0), 1)
+
+    def test_iterative_negative(self):
+        with self.assertRaises(ValueError):
+            Factorials.iterative(-5)
+
+    def test_recursive_basic(self):
+        self.assertEqual(Factorials.recursive(5), 120)
+        self.assertEqual(Factorials.recursive(10), 3628800)
+
+    def test_recursive_one(self):
+        self.assertEqual(Factorials.recursive(1), 1)
+
+    def test_recursive_zero(self):
+        with self.assertRaises(ValueError):
+            Factorials.recursive(0)
+
+    def test_recursive_negative(self):
+        with self.assertRaises(ValueError):
+            Factorials.recursive(-5)
+
+    def test_large(self):
+        n = 200
+        expected = 1
+        for i in range(1, n + 1):
+            expected *= i
+        self.assertEqual(Factorials.iterative(n), expected)
+        self.assertEqual(Factorials.recursive(n), expected)
+
+
+class TestReverseArray(unittest.TestCase):
     pass
 
 
-class TestFactorials:
+class TestPalindrome(unittest.TestCase):
     pass
 
 
-class TestReverse:
-    pass
-
-
-class TestPalindrome:
-    pass
-
-
-class TestFibonacci:
+class TestFibonacci(unittest.TestCase):
     pass
 
 
