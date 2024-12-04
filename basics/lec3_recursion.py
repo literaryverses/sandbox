@@ -4,23 +4,37 @@ class Repeat:
     # O(n) time complexity
     # O(n) space complexity
     @staticmethod
-    def solution(word, times):
+    def solution(obj, times):
         if times == 0:
             return
-        print(word)
-        return Repeat.solution(word, times - 1)
+        print(obj)
+        return Repeat.solution(obj, times - 1)
 
 
 class Counter:
-    """Print a string backwards."""
+    """Print 1 to n"""
 
+    # O(n) time complexity
+    # O(n) space complexity
     @staticmethod
-    def solution(word):
-        if word == "":
+    def solution(n, current=1):
+        if n < current:
             return
+        print(current)
+        return Counter.solution(n, current + 1)
+
+    # O(n) time complexity
+    # O(n) space complexity
+    def backtracking(n, current=1):
+        if n < current:
+            return
+        Counter.backtracking(n - 1, current)
+        print(n)  # prints everything after hitting the base case
 
 
 class CounterBackwards:
+    """Print n to 1"""
+
     pass
 
 
