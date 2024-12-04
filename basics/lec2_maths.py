@@ -3,7 +3,7 @@ import math
 """"""
 
 
-class Count_digits:
+class Counter:
     """
     Count the number of digits in a given number.
     """
@@ -30,7 +30,7 @@ class Count_digits:
         return int(math.log10(abs(n)) + 1)
 
 
-class Reverse_number:
+class Reverser:
     """
     Reverse a given number. Will not include trailing zeroes.
     """
@@ -48,14 +48,16 @@ class Reverse_number:
         return -reversed_number if n < 0 else reversed_number
 
 
-class Check_palindrome:
+class Palindrome:
     """
     Check if a given number is a palindrome.
     """
 
+    # O(log n) time complexity
+    # O(1) space complexity
     @staticmethod
     def optimal_solution(n):
-        reversed_number = Reverse_number.optimal_solution(n)
+        reversed_number = Reverser.optimal_solution(n)
         if n == reversed_number:
             return True
         else:
@@ -88,7 +90,7 @@ class GCD_or_HCF:
         return max(num1, num2)
 
 
-class Armstrong_numbers:
+class Armstrongs:
     """
     Check if a number is a Armstrong number.
     Amrstrong number is a number that is equalto the sum of its own digits each raised
@@ -100,7 +102,7 @@ class Armstrong_numbers:
         if n < 0:
             return False
 
-        num_of_digits = Count_digits.optimal_solution(n)
+        num_of_digits = Counter.optimal_solution(n)
         sum_of_digits = 0
         temp = n
         while temp != 0:
@@ -111,9 +113,61 @@ class Armstrong_numbers:
         return n == sum_of_digits
 
 
-class Print_all_Divisors:
-    pass
+class Divisors:
+    """Returns a set of all divisors of a given number."""
+
+    # O(n) time complexity
+    # O(n) space complexity
+    @staticmethod
+    def brute_force(n):
+        num = abs(n)
+        solution = set()
+        for i in range(1, num + 1):
+            if num % i == 0:
+                solution.add(i)
+                solution.add(num // i)
+        if n < 0:
+            solution = {-i for i in solution} | solution
+        return solution
+
+    # O(sqrt(n)) time complexity
+    # O(n) space complexity
+    @staticmethod
+    def optimal_solution(n):
+        num = abs(n)
+        solution = set()
+        for i in range(1, int(num**0.5) + 1):
+            if num % i == 0:
+                solution.add(i)
+                solution.add(num // i)
+        if n < 0:
+            solution = {-i for i in solution} | solution
+        return solution
 
 
-class Check_for_prime:
-    pass
+class Primes:
+    """Check if a number is a prime number."""
+
+    # O(n) time complexity
+    # O(1) space complexity
+    @staticmethod
+    def brute_force(n):
+        num = abs(n)
+        if num < 2:
+            return False
+        for i in range(2, num):
+            if num % i == 0:
+                return False
+        return True
+
+    # O(sqrt(n)) time complexity
+    # O(1) space complexity
+    @staticmethod
+    def static_method(n):
+        num = abs(n)
+        if num < 2:
+            return False
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False
+        return True

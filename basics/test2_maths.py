@@ -2,9 +2,9 @@ import unittest
 from lec2_maths import *
 
 
-class TestCountDigits(unittest.TestCase):
+class TestCounter(unittest.TestCase):
     def setUp(self):
-        self.counter = Count_digits()
+        self.counter = Counter()
 
     def test_single_digit(self):
         self.assertEqual(self.counter.optimal_solution(5), 1)
@@ -35,9 +35,9 @@ class TestCountDigits(unittest.TestCase):
         self.assertEqual(self.counter.brute_force(-12345), 5)
 
 
-class TestReverseNumber(unittest.TestCase):
+class TestReverser(unittest.TestCase):
     def setUp(self):
-        self.reverser = Reverse_number()
+        self.reverser = Reverser()
 
     def test_single_digit(self):
         self.assertEqual(self.reverser.optimal_solution(5), 5)
@@ -61,9 +61,9 @@ class TestReverseNumber(unittest.TestCase):
         self.assertEqual(self.reverser.optimal_solution(-987654321), -123456789)
 
 
-class TestCheckPalindrome:
+class TestPalindrome:
     def setUp(self):
-        self.palindrome_checker = Check_palindrome()
+        self.palindrome_checker = Palindrome()
 
     def test_single_digit(self):
         self.assertTrue(self.palindrome_checker.optimal_solution(5))
@@ -92,9 +92,9 @@ class TestCheckPalindrome:
         self.assertFalse(self.palindrome_checker.optimal_solution(-123456))
 
 
-class TestArmstrongNumbers:
+class TestArmstrongs:
     def setUp(self):
-        self.armstrong = Armstrong_numbers()
+        self.armstrong = Armstrongs()
 
     def test_armstrong_numbers(self):
         self.assertTrue(self.armstrong.optimal_solution(1))
@@ -146,6 +146,71 @@ class TestGCDOrHCF:
         self.assertEqual(self.gcd.optimal_solution(1000, 2001), 1)
         self.assertEqual(self.gcd.brute_force(10000, 20001), 1)
         self.assertEqual(self.gcd.optimal_solution(10000, 20001), 1)
+
+
+class TestPrimes:
+    def setUp(self):
+        self.primes = Primes()
+
+    def test_primes(self):
+        self.assertTrue(self.primes.optimal_solution(2))
+        self.assertTrue(self.primes.brute_force(3))
+        self.assertTrue(self.primes.optimal_solution(5))
+        self.assertTrue(self.primes.brute_force(7))
+        self.assertTrue(self.primes.optimal_solution(11))
+        self.assertTrue(self.primes.brute_force(13))
+        self.assertTrue(self.primes.optimal_solution(17))
+        self.assertTrue(self.primes.brute_force(19))
+        self.assertTrue(self.primes.optimal_solution(101))
+        self.assertTrue(self.primes.brute_force(107))
+        self.assertTrue(self.primes.optimal_solution(149))
+        self.assertTrue(self.primes.brute_force(157))
+        self.assertTrue(self.primes.optimal_solution(167))
+        self.assertTrue(self.primes.brute_force(179))
+
+    def test_non_primes(self):
+        self.assertFalse(self.primes.optimal_solution(1))
+        self.assertFalse(self.primes.brute_force(1))
+        self.assertFalse(self.primes.optimal_solution(8))
+        self.assertFalse(self.primes.brute_force(9))
+        self.assertFalse(self.primes.optimal_solution(10))
+        self.assertFalse(self.primes.brute_force(20))
+        self.assertFalse(self.primes.optimal_solution(99))
+        self.assertFalse(self.primes.brute_force(100))
+        self.assertFalse(self.primes.optimal_solution(220))
+
+
+class TestDivisors:
+    def setUp(self):
+        self.divisors = Divisors()
+
+    def test_divisors(self):
+        self.assertEqual(self.divisors.brute_force(1), {1})
+        self.assertEqual(self.divisors.optimal_solution(1), {1})
+        self.assertEqual(self.divisors.brute_force(2), {1, 2})
+        self.assertEqual(self.divisors.optimal_solution(2), {1, 2})
+        self.assertEqual(self.divisors.brute_force(3), {1, 3})
+        self.assertEqual(self.divisors.optimal_solution(3), {1, 3})
+        self.assertEqual(self.divisors.brute_force(4), {1, 2, 4})
+        self.assertEqual(self.divisors.optimal_solution(4), {1, 2, 4})
+        self.assertEqual(self.divisors.brute_force(5), {1, 5})
+        self.assertEqual(self.divisors.optimal_solution(5), {1, 5})
+        self.assertEqual(self.divisors.brute_force(6), {1, 2, 3, 6})
+        self.assertEqual(self.divisors.optimal_solution(6), {1, 2, 3, 6})
+        self.assertEqual(self.divisors.brute_force(7), {1, 7})
+        self.assertEqual(self.divisors.optimal_solution(7), {1, 7})
+        self.assertEqual(self.divisors.brute_force(8), {1, 2, 4, 8})
+        self.assertEqual(self.divisors.optimal_solution(8), {1, 2, 4, 8})
+        self.assertEqual(self.divisors.brute_force(9), {1, 3, 9})
+        self.assertEqual(self.divisors.optimal_solution(9), {1, 3, 9})
+        self.assertEqual(self.divisors.brute_force(10), {1, 2, 5, 10})
+        self.assertEqual(self.divisors.optimal_solution(10), {1, 2, 5, 10})
+
+    def test_negative_numbers(self):
+        self.assertEqual(self.divisors.brute_force(-1), {1, -1})
+        self.assertEqual(self.divisors.optimal_solution(-1), {1, -1})
+        self.assertEqual(self.divisors.brute_force(-2), {1, 2, -2, -1})
+        self.assertEqual(self.divisors.optimal_solution(-15), {1, 3, 5, 15, -1, -3, -5})
 
 
 if __name__ == "__main__":
