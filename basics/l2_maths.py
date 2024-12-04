@@ -1,7 +1,13 @@
 import math
 
+""""""
+
 
 class Count_digits:
+    """
+    Count the number of digits in a given number.
+    """
+
     # O(log n) time complexity
     # O(1) space complexity
     def brute_force(self, n):
@@ -23,7 +29,18 @@ class Count_digits:
 
 
 class Reverse_number:
-    pass
+    """
+    Reverse a given number. Will not include trailing zeroes.
+    """
+
+    def optimal_solution(self, n):
+        num = abs(n)
+        reversed_number = 0
+        while num != 0:
+            reversed_number = reversed_number * 10 + num % 10
+            num = num // 10
+
+        return -reversed_number if n < 0 else reversed_number
 
 
 class Check_palindrome:

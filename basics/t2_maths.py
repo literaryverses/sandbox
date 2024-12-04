@@ -35,5 +35,31 @@ class TestCountDigits(unittest.TestCase):
         self.assertEqual(self.counter.brute_force(-12345), 5)
 
 
+class TestOptimalSolution(unittest.TestCase):
+    def setUp(self):
+        self.reverser = Reverse_number()
+
+    def test_single_digit(self):
+        self.assertEqual(self.reverser.optimal_solution(5), 5)
+        self.assertEqual(self.reverser.optimal_solution(-3), -3)
+
+    def test_positive_numbers(self):
+        self.assertEqual(self.reverser.optimal_solution(123), 321)
+        self.assertEqual(self.reverser.optimal_solution(120), 21)
+        self.assertEqual(self.reverser.optimal_solution(1000), 1)
+
+    def test_negative_numbers(self):
+        self.assertEqual(self.reverser.optimal_solution(-123), -321)
+        self.assertEqual(self.reverser.optimal_solution(-120), -21)
+        self.assertEqual(self.reverser.optimal_solution(-1000), -1)
+
+    def test_zero(self):
+        self.assertEqual(self.reverser.optimal_solution(0), 0)
+
+    def test_large_numbers(self):
+        self.assertEqual(self.reverser.optimal_solution(987654321), 123456789)
+        self.assertEqual(self.reverser.optimal_solution(-987654321), -123456789)
+
+
 if __name__ == "__main__":
     unittest.main()
