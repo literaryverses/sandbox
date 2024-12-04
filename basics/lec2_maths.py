@@ -56,17 +56,32 @@ class Check_palindrome:
             return False
 
 
-print(Check_palindrome().optimal_solution(12321))
-
-# print(Check_palindrome().optimal_solution(12321))
-
-
 class GCD_or_HCF:
+    """
+    Find the Greatest Common Divisor (GCD) or Highest Common Factor (HCF) of two numbers.
+    """
+
     pass
 
 
 class Armstrong_numbers:
-    pass
+    """
+    Check if a number is a Armstrong number.
+    Amrstrong number is a number that is equalto the sum of its own digits each raised
+    to the power of the number of digits.
+    """
+
+    def optimal_solution(self, n):
+        num = abs(n)
+        num_of_digits = Count_digits().optimal_solution(num)
+        sum_of_digits = 0
+        temp = num
+        while temp != 0:
+            digit = temp % 10
+            sum_of_digits += digit**num_of_digits
+            temp = temp // 10
+
+        return num == sum_of_digits
 
 
 class Print_all_Divisors:

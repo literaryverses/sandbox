@@ -1,5 +1,5 @@
 import unittest
-from l2_maths import *
+from lec2_maths import *
 
 
 class TestCountDigits(unittest.TestCase):

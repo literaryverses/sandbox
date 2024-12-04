@@ -1,7 +1,7 @@
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from l1_patterns import *
+from lec1_patterns import *
 
 
 class TestRegularBlock(unittest.TestCase):
