@@ -25,10 +25,10 @@ class Counter:
 
     # O(n) time complexity
     # O(n) space complexity
-    def backtracking(n, current=1):
-        if n < current:
+    def backtracking(n):
+        if n < 1:
             return
-        Counter.backtracking(n - 1, current)
+        Counter.backtracking(n - 1)
         print(n)  # prints everything after hitting the base case
 
 
@@ -37,17 +37,19 @@ class CounterBackwards:
 
     @staticmethod
     def solution(n):
-        if n == 0:
+        if n < 1:
             return
         print(n)
         return CounterBackwards.solution(n - 1)
 
     @staticmethod
-    def backtracking(n):
-        if n == 0:
+    def backtracking(n, current=1):
+        if n < 0:
             return
-        CounterBackwards.backtracking(n - 1)
-        print(n)
+        if n < current:
+            return
+        CounterBackwards.backtracking(n, current + 1)
+        print(current)
 
 
 class Sums:
