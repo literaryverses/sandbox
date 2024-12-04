@@ -92,5 +92,29 @@ class TestCheckPalindrome:
         self.assertFalse(self.palindrome_checker.optimal_solution(-123456))
 
 
+class TestArmstrongNumbers:
+    def setUp(self):
+        self.armstrong = Armstrong_numbers()
+
+    def test_armstrong_numbers(self):
+        self.assertTrue(self.armstrong.optimal_solution(1))
+        self.assertTrue(self.armstrong.optimal_solution(153))
+        self.assertTrue(self.armstrong.optimal_solution(370))
+        self.assertTrue(self.armstrong.optimal_solution(371))
+        self.assertTrue(self.armstrong.optimal_solution(9474))
+        self.assertTrue(self.armstrong.optimal_solution(54748))
+        self.assertTrue(self.armstrong.optimal_solution(92727))
+        self.assertTrue(self.armstrong.optimal_solution(93084))
+
+    def test_non_armstrong_numbers(self):
+        self.assertTrue(self.armstrong.optimal_solution(-153))
+        self.assertFalse(self.armstrong.optimal_solution(154))
+        self.assertFalse(self.armstrong.optimal_solution(3711))
+        self.assertFalse(self.armstrong.optimal_solution(9475))
+        self.assertFalse(self.armstrong.optimal_solution(54749))
+        self.assertFalse(self.armstrong.optimal_solution(92728))
+        self.assertFalse(self.armstrong.optimal_solution(93085))
+
+
 if __name__ == "__main__":
     unittest.main()

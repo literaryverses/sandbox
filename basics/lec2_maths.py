@@ -33,6 +33,8 @@ class Reverse_number:
     Reverse a given number. Will not include trailing zeroes.
     """
 
+    # O(log n) time complexity
+    # O(1) space complexity
     def optimal_solution(self, n):
         num = abs(n)
         reversed_number = 0
@@ -72,16 +74,18 @@ class Armstrong_numbers:
     """
 
     def optimal_solution(self, n):
-        num = abs(n)
-        num_of_digits = Count_digits().optimal_solution(num)
+        if n < 0:
+            return False
+
+        num_of_digits = Count_digits().optimal_solution(n)
         sum_of_digits = 0
-        temp = num
+        temp = n
         while temp != 0:
             digit = temp % 10
             sum_of_digits += digit**num_of_digits
             temp = temp // 10
 
-        return num == sum_of_digits
+        return n == sum_of_digits
 
 
 class Print_all_Divisors:
