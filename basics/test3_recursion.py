@@ -91,7 +91,62 @@ class TestCounter(unittest.TestCase):
 
 
 class TestCounterBackwards:
-    pass
+    def setUp(self):
+        self.held_output = StringIO()
+        sys.stdout = self.held_output
+
+    def tearDown(self):
+        sys.stdout = sys.__stdout__
+
+    def test_solution_basic(self):
+        CounterBackwards.solution(5)
+        self.held_output.seek(0)
+        output = self.held_output.read().strip().split("\n")
+        self.assertEqual(output, ["5", "4", "3", "2", "1"])
+
+    def test_solution_n_zero(self):
+        CounterBackwards.solution(0)
+        self.held_output.seek(0)
+        output = self.held_output.read()
+        self.assertEqual(output, "")
+
+    def test_solution_negative_n(self):
+        CounterBackwards.solution(-5)
+        self.held_output.seek(0)
+        output = self.held_output.read()
+        self.assertEqual(output, "")
+
+    def test_solution_large_n(self):
+        n = 100
+        CounterBackwards.solution(n)
+        self.held_output.seek(0)
+        output = self.held_output.read().strip().split("\n")
+        self.assertEqual(output, [str(i) for i in range(n, 0, -1)])
+
+    def test_backtracking_basic(self):
+        CounterBackwards.backtracking(5)
+        self.held_output.seek(0)
+        output = self.held_output.read().strip().split("\n")
+        self.assertEqual(output, ["5", "4", "3", "2", "1"])
+
+    def test_backtracking_n_zero(self):
+        CounterBackwards.backtracking(0)
+        self.held_output.seek(0)
+        output = self.held_output.read()
+        self.assertEqual(output, "")
+
+    def test_backtracking_negative_n(self):
+        CounterBackwards.backtracking(-5)
+        self.held_output.seek(0)
+        output = self.held_output.read()
+        self.assertEqual(output, "")
+
+    def test_backtracking_large_n(self):
+        n = 100
+        CounterBackwards.backtracking(n)
+        self.held_output.seek(0)
+        output = self.held_output.read().strip().split("\n")
+        self.assertEqual(output, [str(i) for i in range(n, 0, -1)])
 
 
 class TestSums:
