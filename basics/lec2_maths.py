@@ -73,8 +73,8 @@ class GCD_or_HCF:
     # O(1) space complexity
     @staticmethod
     def brute_force(num1, num2):
-        min = min(num1, num2)
-        for i in range(min, 0, -1):
+        min_num = min(num1, num2)
+        for i in range(min_num, 0, -1):
             if num1 % i == 0 and num2 % i == 0:
                 return i
         return "No GCD/HCF found"
@@ -163,7 +163,7 @@ class Primes:
     # O(sqrt(n)) time complexity
     # O(1) space complexity
     @staticmethod
-    def static_method(n):
+    def optimal_solution(n):
         num = abs(n)
         if num < 2:
             return False
