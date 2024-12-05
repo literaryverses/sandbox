@@ -1,7 +1,5 @@
 import math
 
-""""""
-
 
 class Counter:
     """
