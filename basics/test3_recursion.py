@@ -239,7 +239,63 @@ class TestFactorials(unittest.TestCase):
 
 
 class TestReverseArray(unittest.TestCase):
-    pass
+    def test_iterative_basic(self):
+        array = [1, 2, 3, 4, 5]
+        result = ReverseArray.iterative(array)
+        self.assertEqual(result, [5, 4, 3, 2, 1])
+
+    def test_iterative_empty(self):
+        array = []
+        result = ReverseArray.iterative(array)
+        self.assertEqual(result, [])
+
+    def test_iterative_single_element(self):
+        array = [1]
+        result = ReverseArray.iterative(array)
+        self.assertEqual(result, [1])
+
+    def test_two_pointers_basic(self):
+        array = [1, 2, 3, 4, 5]
+        result = ReverseArray.two_pointers(array)
+        self.assertEqual(result, [5, 4, 3, 2, 1])
+
+    def test_two_pointers_empty(self):
+        array = []
+        result = ReverseArray.two_pointers(array)
+        self.assertEqual(result, [])
+
+    def test_two_pointers_single_element(self):
+        array = [1]
+        result = ReverseArray.two_pointers(array)
+        self.assertEqual(result, [1])
+
+    def test_recursive_basic(self):
+        array = [1, 2, 3, 4, 5]
+        result = ReverseArray.recursive(array)
+        self.assertEqual(result, [5, 4, 3, 2, 1])
+
+    def test_recursive_empty(self):
+        array = []
+        result = ReverseArray.recursive(array)
+        self.assertEqual(result, [])
+
+    def test_recursive_single_element(self):
+        array = [1]
+        result = ReverseArray.recursive(array)
+        self.assertEqual(result, [1])
+
+    def test_stress_test(self):
+        array = list(range(1, 1001))
+        result = ReverseArray.iterative(array)
+        self.assertEqual(result, list(range(1000, 0, -1)))
+
+        array = list(range(1, 1001))
+        result = ReverseArray.two_pointers(array)
+        self.assertEqual(result, list(range(1000, 0, -1)))
+
+        array = list(range(1, 1001))
+        result = ReverseArray.recursive(array)
+        self.assertEqual(result, list(range(1000, 0, -1)))
 
 
 class TestPalindrome(unittest.TestCase):
