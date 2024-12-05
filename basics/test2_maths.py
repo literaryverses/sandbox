@@ -61,7 +61,7 @@ class TestReverser(unittest.TestCase):
         self.assertEqual(self.reverser.optimal_solution(-987654321), -123456789)
 
 
-class TestPalindrome:
+class TestPalindrome(unittest.TestCase):
     def setUp(self):
         self.palindrome_checker = Palindrome()
 
@@ -92,7 +92,7 @@ class TestPalindrome:
         self.assertFalse(self.palindrome_checker.optimal_solution(-123456))
 
 
-class TestArmstrongs:
+class TestArmstrongs(unittest.TestCase):
     def setUp(self):
         self.armstrong = Armstrongs()
 
@@ -107,7 +107,7 @@ class TestArmstrongs:
         self.assertTrue(self.armstrong.optimal_solution(93084))
 
     def test_non_armstrong_numbers(self):
-        self.assertTrue(self.armstrong.optimal_solution(-153))
+        self.assertFalse(self.armstrong.optimal_solution(-153))
         self.assertFalse(self.armstrong.optimal_solution(154))
         self.assertFalse(self.armstrong.optimal_solution(3711))
         self.assertFalse(self.armstrong.optimal_solution(9475))
@@ -116,7 +116,7 @@ class TestArmstrongs:
         self.assertFalse(self.armstrong.optimal_solution(93085))
 
 
-class TestGCDOrHCF:
+class TestGCDorHCF(unittest.TestCase):
     def setUp(self):
         self.gcd = GCD_or_HCF()
 
@@ -148,7 +148,7 @@ class TestGCDOrHCF:
         self.assertEqual(self.gcd.optimal_solution(10000, 20001), 1)
 
 
-class TestPrimes:
+class TestPrimes(unittest.TestCase):
     def setUp(self):
         self.primes = Primes()
 
@@ -180,7 +180,7 @@ class TestPrimes:
         self.assertFalse(self.primes.optimal_solution(220))
 
 
-class TestDivisors:
+class TestDivisors(unittest.TestCase):
     def setUp(self):
         self.divisors = Divisors()
 
@@ -210,7 +210,9 @@ class TestDivisors:
         self.assertEqual(self.divisors.brute_force(-1), {1, -1})
         self.assertEqual(self.divisors.optimal_solution(-1), {1, -1})
         self.assertEqual(self.divisors.brute_force(-2), {1, 2, -2, -1})
-        self.assertEqual(self.divisors.optimal_solution(-15), {1, 3, 5, 15, -1, -3, -5})
+        self.assertEqual(
+            self.divisors.optimal_solution(-15), {1, 3, 5, 15, -1, -3, -5, -15}
+        )
 
 
 if __name__ == "__main__":
