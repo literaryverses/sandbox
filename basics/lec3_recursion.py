@@ -123,6 +123,45 @@ class Factorials:
 class ReverseArray:
     """Reverses an array."""
 
+    # O(n) time complexity
+    # O(n) space complexity
+    @staticmethod
+    def iterative(array):
+        length = len(array)
+        solution = [0] * length
+        for i in range(length - 1, -1, -1):
+            solution[length - i - 1] = array[i]
+        return solution
+
+    # O(n) time complexity
+    # O(1) space complexity
+    @staticmethod
+    def two_pointers(array):
+        left, right = 0, len(array) - 1
+        while left < right:
+            array[left], array[right] = array[right], array[left]
+            left += 1
+            right -= 1
+        return array
+
+    # O(n) time complexity
+    # O(n) space complexity
+    @staticmethod
+    def recursive(array):
+        def helper(array, start, end):
+            if start <= end:
+                array[start], array[end] = array[end], array[start]
+                helper(array, start + 1, end - 1)
+                return array
+
+        if array:
+            return helper(array, 0, len(array) - 1)
+        else:
+            return array  # empty array
+
+
+print(ReverseArray.recursive([1]))
+
 
 class Palindrome:
     pass
