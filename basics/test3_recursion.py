@@ -15,20 +15,20 @@ class TestRepeat(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
     def test_basic_functionality(self):
-        Repeat.solution("hello", 3)
+        Repeat.recursive("hello", 3)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, ["hello", "hello", "hello"])
 
     def test_times_zero(self):
-        Repeat.solution("world", 0)
+        Repeat.recursive("world", 0)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
     def test_invalid_times_negative(self):
         with self.assertRaises(RecursionError):
-            Repeat.solution("negative", -1)
+            Repeat.recursive("negative", -1)
 
 
 class TestCounter(unittest.TestCase):
@@ -39,52 +39,52 @@ class TestCounter(unittest.TestCase):
     def tearDown(self):
         sys.stdout = sys.__stdout__
 
-    def test_solution_basic(self):
-        Counter.solution(5)
+    def test_recursive_basic(self):
+        Counter.recursive_basic(5)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, ["1", "2", "3", "4", "5"])
 
-    def test_solution_zero(self):
-        Counter.solution(0)
+    def test_recursive_zero(self):
+        Counter.recursive_basic(0)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
-    def test_solution_negative(self):
-        Counter.solution(-5)
+    def test_recursive_negative(self):
+        Counter.recursive_basic(-5)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
-    def test_solution_large_n(self):
+    def test_recursive_large_n(self):
         n = 100
-        Counter.solution(n)
+        Counter.recursive_basic(n)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, [str(i) for i in range(1, n + 1)])
 
     def test_backtracking_basic(self):
-        Counter.backtracking(5)
+        Counter.recursive_backtracking(5)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, ["1", "2", "3", "4", "5"])
 
     def test_backtracking_zero(self):
-        Counter.backtracking(0)
+        Counter.recursive_backtracking(0)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
     def test_backtracking_negative(self):
-        Counter.backtracking(-5)
+        Counter.recursive_backtracking(-5)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
     def test_backtracking_large_n(self):
         n = 100
-        Counter.backtracking(n)
+        Counter.recursive_backtracking(n)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, [str(i) for i in range(1, n + 1)])
@@ -98,52 +98,52 @@ class TestCounterBackwards(unittest.TestCase):
     def tearDown(self):
         sys.stdout = sys.__stdout__
 
-    def test_solution_basic(self):
-        CounterBackwards.solution(5)
+    def test_recursive_basic(self):
+        CounterBackwards.recursive_basic(5)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, ["5", "4", "3", "2", "1"])
 
-    def test_solution_zero(self):
-        CounterBackwards.solution(0)
+    def test_recursive_zero(self):
+        CounterBackwards.recursive_basic(0)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
-    def test_solution_negative(self):
-        CounterBackwards.solution(-5)
+    def test_recursive_negative(self):
+        CounterBackwards.recursive_basic(-5)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
-    def test_solution_large(self):
+    def test_recursive_large(self):
         n = 100
-        CounterBackwards.solution(n)
+        CounterBackwards.recursive_basic(n)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, [str(i) for i in range(n, 0, -1)])
 
     def test_backtracking_basic(self):
-        CounterBackwards.backtracking(5)
+        CounterBackwards.recursive_backtracking(5)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, ["5", "4", "3", "2", "1"])
 
     def test_backtracking_zero(self):
-        CounterBackwards.backtracking(0)
+        CounterBackwards.recursive_backtracking(0)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
     def test_backtracking_negative(self):
-        CounterBackwards.backtracking(-5)
+        CounterBackwards.recursive_backtracking(-5)
         self.held_output.seek(0)
         output = self.held_output.read()
         self.assertEqual(output, "")
 
     def test_backtracking_large(self):
         n = 100
-        CounterBackwards.backtracking(n)
+        CounterBackwards.recursive_backtracking(n)
         self.held_output.seek(0)
         output = self.held_output.read().strip().split("\n")
         self.assertEqual(output, [str(i) for i in range(n, 0, -1)])
@@ -299,11 +299,68 @@ class TestReverseArray(unittest.TestCase):
 
 
 class TestPalindrome(unittest.TestCase):
-    pass
+    def test_two_pointer_basic(self):
+        self.assertTrue(Palindrome.two_pointer("racecar"))
+        self.assertTrue(Palindrome.two_pointer("madam"))
+        self.assertFalse(Palindrome.two_pointer("hello"))
+
+    def test_two_pointer_empty(self):
+        self.assertTrue(Palindrome.two_pointer(""))
+
+    def test_two_pointer_single_character(self):
+        self.assertTrue(Palindrome.two_pointer("a"))
+
+    def test_two_pointer_case_sensitive(self):
+        self.assertFalse(Palindrome.two_pointer("Racecar"))
+
+    def test_recursive_basic(self):
+        self.assertTrue(Palindrome.recursive("racecar"))
+        self.assertTrue(Palindrome.recursive("madam"))
+        self.assertFalse(Palindrome.recursive("hello"))
+
+    def test_recursive_empty(self):
+        self.assertTrue(Palindrome.recursive(""))
+
+    def test_recursive_single_character(self):
+        self.assertTrue(Palindrome.recursive("a"))
+
+    def test_recursive_case_sensitive(self):
+        self.assertFalse(Palindrome.recursive("Racecar"))
+
+    def test_stress_test(self):
+        long_palindrome = "a" * 900 + "b" + "a" * 900
+        self.assertTrue(Palindrome.two_pointer(long_palindrome))
+        self.assertTrue(Palindrome.recursive(long_palindrome))
+
+        long_non_palindrome = "a" * 900 + "b" + "c" + "a" * 899
+        self.assertFalse(Palindrome.two_pointer(long_non_palindrome))
+        self.assertFalse(Palindrome.recursive(long_non_palindrome))
 
 
 class TestFibonacci(unittest.TestCase):
-    pass
+    def test_two_pointers_basic(self):
+        self.assertEqual(Fibonacci.two_pointers(0), [])
+        self.assertEqual(Fibonacci.two_pointers(1), [0])
+        self.assertEqual(Fibonacci.two_pointers(2), [0, 1])
+        self.assertEqual(Fibonacci.two_pointers(5), [0, 1, 1, 2, 3])
+        self.assertEqual(Fibonacci.two_pointers(10), [0, 1, 1, 2, 3, 5, 8, 13, 21, 34])
+
+    def test_recursive_basic(self):
+        self.assertEqual(Fibonacci.recursive(0), [])
+        self.assertEqual(Fibonacci.recursive(1), [0])
+        self.assertEqual(Fibonacci.recursive(2), [0, 1])
+        self.assertEqual(Fibonacci.recursive(5), [0, 1, 1, 2, 3])
+        self.assertEqual(Fibonacci.recursive(10), [0, 1, 1, 2, 3, 5, 8, 13, 21, 34])
+
+    def test_large_inputs(self):
+        self.assertEqual(Fibonacci.two_pointers(15), Fibonacci.recursive(15))
+        self.assertEqual(Fibonacci.two_pointers(20), Fibonacci.recursive(20))
+
+    def test_edge_cases(self):
+        self.assertEqual(Fibonacci.two_pointers(-5), [])
+        self.assertEqual(Fibonacci.recursive(-5), [])
+        self.assertEqual(Fibonacci.two_pointers(0), [])
+        self.assertEqual(Fibonacci.recursive(0), [])
 
 
 if __name__ == "__main__":

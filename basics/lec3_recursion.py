@@ -4,11 +4,11 @@ class Repeat:
     # O(n) time complexity
     # O(n) space complexity
     @staticmethod
-    def solution(obj, times):
+    def recursive(obj, times):
         if times == 0:
             return
         print(obj)
-        return Repeat.solution(obj, times - 1)
+        return Repeat.recursive(obj, times - 1)
 
 
 class Counter:
@@ -17,18 +17,18 @@ class Counter:
     # O(n) time complexity
     # O(n) space complexity
     @staticmethod
-    def solution(n, current=1):
+    def recursive_basic(n, current=1):
         if n < current:
             return
         print(current)
-        return Counter.solution(n, current + 1)
+        return Counter.recursive_basic(n, current + 1)
 
     # O(n) time complexity
     # O(n) space complexity
-    def backtracking(n):
+    def recursive_backtracking(n):
         if n < 1:
             return
-        Counter.backtracking(n - 1)
+        Counter.recursive_backtracking(n - 1)
         print(n)  # prints everything after hitting the base case
 
 
@@ -38,21 +38,21 @@ class CounterBackwards:
     # O(n) time complexity
     # O(1) space complexity
     @staticmethod
-    def solution(n):
+    def recursive_basic(n):
         if n < 1:
             return
         print(n)
-        return CounterBackwards.solution(n - 1)
+        return CounterBackwards.recursive_basic(n - 1)
 
     # O(n) time complexity
     # O(1) space complexity
     @staticmethod
-    def backtracking(n, current=1):
+    def recursive_backtracking(n, current=1):
         if n < 0:
             return
         if n < current:
             return
-        CounterBackwards.backtracking(n, current + 1)
+        CounterBackwards.recursive_backtracking(n, current + 1)
         print(current)
 
 
@@ -128,10 +128,10 @@ class ReverseArray:
     @staticmethod
     def iterative(array):
         length = len(array)
-        solution = [0] * length
+        reverse_array = [0] * length
         for i in range(length - 1, -1, -1):
-            solution[length - i - 1] = array[i]
-        return solution
+            reverse_array[length - i - 1] = array[i]
+        return reverse_array
 
     # O(n) time complexity
     # O(1) space complexity
@@ -157,15 +157,70 @@ class ReverseArray:
         if array:
             return helper(array, 0, len(array) - 1)
         else:
-            return array  # empty array
-
-
-print(ReverseArray.recursive([1]))
+            return []
 
 
 class Palindrome:
-    pass
+    """Check if a string is a palindrome."""
+
+    # O(n) time complexity
+    # O(1) space complexity
+    @staticmethod
+    def two_pointer(s):
+        left, right = 0, len(s) - 1
+        while left < right:
+            if s[left] != s[right]:
+                return False
+            left += 1
+            right -= 1
+        return True
+
+    # O(n) time complexity
+    # O(n) space complexity
+    @staticmethod
+    def recursive(s):
+        def helper(s, left, right):
+            if right < left:
+                return True
+            if s[left] != s[right]:
+                return False
+            return helper(s, left + 1, right - 1)
+
+        return helper(s, 0, len(s) - 1)
 
 
 class Fibonacci:
-    pass
+    """returns Fibonacci series up to a nth term."""
+
+    # O(n) time complexity
+    # O(n) space complexity (due to list creation)
+    @staticmethod
+    def two_pointers(n):
+        if n <= 0:
+            return []
+        elif n == 1:
+            return [0]
+        else:
+            left = 0
+            right = 1
+            seq = [left, right]
+            for _ in range(n - 2):
+                left, right = right, left + right
+                seq.append(right)
+            return seq
+
+    # O(n) time complexity
+    # O(n) space complexity (list creation and recursion)
+    @staticmethod
+    def recursive(n):
+
+        if n <= 0:
+            return []
+        if n == 1:
+            return [0]
+        if n == 2:
+            return [0, 1]
+
+        seq = Fibonacci.recursive(n - 1)
+        seq.append(seq[-1] + seq[-2])
+        return seq
