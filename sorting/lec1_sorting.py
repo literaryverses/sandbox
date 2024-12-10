@@ -12,7 +12,7 @@ class Sort:
                 if self.array[j] < self.array[min]:
                     min = j
 
-            self.array[j], self.array[min] = self.array[min], self.array[j]
+            self.array[i], self.array[min] = self.array[min], self.array[i]
 
     # O(n^2) time complexity
     # O(1) space complexity
@@ -36,7 +36,7 @@ class Sort:
             if not swapped:
                 break  # quits if no swaps are made (already sorted!)
 
-    # O(n^2) time complexity
+    # O(n^2) time complexity; best case is O(n)
     # O(1) space complexity
     def insertion_sort(self):
         n = len(self.array)
