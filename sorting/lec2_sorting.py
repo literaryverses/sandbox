@@ -82,4 +82,25 @@ class RecursiveSort:
         insertionsort(0, n)
 
     def quick_sort(self):
-        pass
+        def partition(low, high):
+            pivot = self.array[low]
+            i = low
+            j = high
+            while i < j:
+                while self.array[i] <= pivot and i <= high - 1:
+                    i += 1
+                while self.array[j] > pivot and j >= low + 1:
+                    j -= 1
+                if i < j:
+                    self.array[i], self.array[j] = self.array[j], self.array[i]
+            self.array[low], self.array[j] = self.array[j], self.array[low]
+            return j
+
+        def quicksort(low, high):
+            if low < high:
+                pIndex = partition(low, high)
+                quicksort(low, pIndex - 1)
+                quicksort(pIndex + 1, high)
+
+        n = len(self.array)
+        quicksort(0, n - 1)
