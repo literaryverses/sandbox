@@ -81,6 +81,8 @@ class RecursiveSort:
         n = len(self.array)
         insertionsort(0, n)
 
+    # O(n log n) time complexity
+    # O(n) space complexity for auxiliary stack space
     def quick_sort(self):
         def partition(low, high):
             pivot = self.array[low]
